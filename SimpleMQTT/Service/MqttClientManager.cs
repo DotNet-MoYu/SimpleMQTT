@@ -15,9 +15,8 @@ namespace SimpleMQTT
 
         public MqttClientManager(IConfiguration configuration)
         {
-            MqttClientConfig config = new MqttClientConfig();
-            configuration.GetSection("MqttSetting").Bind(config);//获取配置
-            if (!string.IsNullOrEmpty(config.Host))
+            MqttClientConfig config = configuration.GetSection("MqttSetting").Get<MqttClientConfig>();//获取配置配置
+            if (config != null && !string.IsNullOrEmpty(config.Host))
             {
                 //如果配置不是空则创建连接
                 AddClient(config);
@@ -26,9 +25,8 @@ namespace SimpleMQTT
             else
             {
                 //配置是空，试试是不是多个客户端配置
-                List<MqttClientConfig> configs = new List<MqttClientConfig>();
-                configuration.GetSection("MqttSetting").Bind(configs);//获取配置
-                if (configs.Count > 0)
+                List<MqttClientConfig> configs = configuration.GetSection("MqttSetting").Get<List<MqttClientConfig>>();//获取配置配置
+                if (configs != null)
                 {
                     //如果不为空，创建连接
                     configs.ForEach(it =>

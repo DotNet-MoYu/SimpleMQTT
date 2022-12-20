@@ -8,7 +8,7 @@
 		<PackageProjectUrl>https://www.cnblogs.com/huguodong/p/16400340.html</PackageProjectUrl>
 		<Author>胡国东</Author>
 		<VersionPrefix>1.0</VersionPrefix>
-		<Version>$(VersionPrefix).0</Version>
+		<Version>$(VersionPrefix).2</Version>
 		<FileVersion>$(Version)</FileVersion>
 		<AssemblyVersion>$(VersionPrefix).*</AssemblyVersion>
 		<Deterministic>false</Deterministic>

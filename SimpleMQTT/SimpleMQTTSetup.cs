@@ -33,9 +33,18 @@ namespace SimpleMQTT
         public static void AddMqttClientManager(this IServiceCollection services, IConfiguration configuration, string section = "MqttSetting", bool start = true)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
-            MqttClientConfig config = new MqttClientConfig();
-            configuration.GetSection(section).Bind(config);//获取配置
-            services.AddSingleton<IMqttClientManager, MqttClientManager>(x => new MqttClientManager(config, start));
+            MqttClientConfig config = configuration.GetSection(section).Get<MqttClientConfig>();//获取配置配置
+            if (config != null && !string.IsNullOrEmpty(config.Host))
+            {
+                services.AddSingleton<IMqttClientManager, MqttClientManager>(x => new MqttClientManager(config, start));
+            }
+            else
+            {
+                List<MqttClientConfig> configs = configuration.GetSection(section).Get<List<MqttClientConfig>>();//获取配置配置
+                if (configs == null) throw new ArgumentException("mqtt配置未找到，请配置mqtt链接信息", nameof(configuration));
+                services.AddSingleton<IMqttClientManager, MqttClientManager>(x => new MqttClientManager(configs, start));
+            }
+
         }
 
         /// <summary>
