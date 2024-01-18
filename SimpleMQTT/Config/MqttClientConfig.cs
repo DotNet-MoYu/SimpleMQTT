@@ -62,9 +62,5 @@ namespace SimpleMQTT
         /// </summary>
         public int Timeout { get; set; } = 15000;
 
-        /// <summary>
-        /// 是否进行SSL连接
-        /// </summary>
-        public bool UseSSL { get; set; } = false;
     }
 }

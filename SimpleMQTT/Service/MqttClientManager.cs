@@ -81,7 +81,6 @@ namespace SimpleMQTT
                     Reconnect = config.Reconnect,
                     CleanSession = config.CleanSession,
                     Timeout = config.Timeout,
-                    SslProtocol = config.UseSSL ? SslProtocols.Tls13 : SslProtocols.None,
 
                 };
                 client.Connected += MqttClient_Connected;
