@@ -30,7 +30,7 @@ namespace SimpleMQTT
         /// <param name="section">配置文件节点</param>
         /// <param name="start">立即启动</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public static void AddMqttClientManager(this IServiceCollection services, IConfiguration configuration, string section = "MqttSetting", bool start = true)
+        public static void AddMqttClientManager(this IServiceCollection services, IConfiguration configuration, string section = "MqttSettings", bool start = true)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
             MqttClientConfig config = configuration.GetSection(section).Get<MqttClientConfig>();//获取配置配置
