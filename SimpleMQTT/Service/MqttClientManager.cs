@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using NewLife.MQTT;
+using System.Security.Authentication;
 
 namespace SimpleMQTT
 {
@@ -80,7 +81,7 @@ namespace SimpleMQTT
                     Reconnect = config.Reconnect,
                     CleanSession = config.CleanSession,
                     Timeout = config.Timeout,
-                    UseSSL = config.UseSSL,
+                    SslProtocol = config.UseSSL ? SslProtocols.Tls13 : SslProtocols.None,
 
                 };
                 client.Connected += MqttClient_Connected;
